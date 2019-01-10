@@ -10,7 +10,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib")
 # group source files
 # libraries:  file(GLOB UPPER_CASE_LIB_NAME_SRC src/files.c)
 # executable: files(GLOB MAIN_SRC src/main.c)
-file(GLOB ARRAY_SRC src/array.c)
+file(GLOB QUEUE_SRC src/queue.c)
 
 # sources end
 
@@ -27,10 +27,10 @@ include_directories(include)
 # output files:
 # libraries: add_library("library_name" SHARED | STATIC "${VAR_WITH_SOURCES}")
 # executable: add_executable(${PROJECT_NAME} ${MAIN_SRC})
-add_library("array" SHARED "${ARRAY_SRC}")
+add_library("queue" SHARED "${QUEUE_SRC}")
 
 enable_testing()
 add_subdirectory(test)
 # add test as follow
 # add_test(test_name test/test_name "${CURRENT_LIST_DIR}")
-add_test(create_array test/create_array)
+add_test(create_queue test/create_queue)
