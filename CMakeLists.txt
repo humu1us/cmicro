@@ -34,3 +34,4 @@ add_subdirectory(test)
 # add test as follow
 # add_test(test_name test/test_name "${CURRENT_LIST_DIR}")
 add_test(create_queue test/create_queue)
+add_test(push_pop_queue test/push_pop_queue)
