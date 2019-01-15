@@ -11,7 +11,7 @@ struct queue
 
 queue_t *queue_new(size_t size)
 {
-    queue_t *queue = (queue_t *)malloc(sizeof(queue_t *));
+    queue_t *queue = (queue_t *)malloc(sizeof(queue_t));
 
     if (!queue)
         return NULL;
