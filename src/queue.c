@@ -36,9 +36,6 @@ queue_t *queue_new(size_t size)
 
 void queue_free(queue_t *queue)
 {
-    if (!queue)
-        return;
-
     free(queue->data);
     free(queue);
 }
