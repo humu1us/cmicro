@@ -1,7 +1,7 @@
 #ifndef MICRO_QUEUE_H
 #define MICRO_QUEUE_H
 
-#include <stdlib.h>
+#include <stddef.h>
 
 struct _queue;
 typedef struct queue queue_t;
