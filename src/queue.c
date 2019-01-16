@@ -18,7 +18,7 @@ queue_t *queue_new(size_t size)
 
     if (!queue)
     {
-        printf("Error allocating memory for the queue, queue not created\n");
+        fprintf(stderr, "Error allocating memory for the queue, queue not created\n");
         return NULL;
     }
 
@@ -30,7 +30,7 @@ queue_t *queue_new(size_t size)
 
     if (!queue->data)
     {
-        printf("Error allocating memory for the data, queue not created\n");
+        fprintf(stderr, "Error allocating memory for the data, queue not created\n");
         free(queue);
         return NULL;
     }
@@ -62,7 +62,7 @@ void *queue_pop(queue_t *queue)
 {
     if (queue->used == 0)
     {
-        printf("Queue empty\n");
+        fprintf(stderr, "Queue empty\n");
         return NULL;
     }
 
