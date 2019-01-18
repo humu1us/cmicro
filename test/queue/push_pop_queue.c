@@ -25,7 +25,7 @@ int main()
     assert(el_3 == *((float *)pop_3));
 
     int elements[10];
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 10; ++i)
     {
         elements[i] = 100 + i * i;
         error = queue_push(q, &elements[i]);
