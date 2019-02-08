@@ -5,8 +5,6 @@ project(cmicro C)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake")
 
 # setting output
-set(CMAKE_BINARY_DIR "${CMAKE_SOURCE_DIR}/bin")
-set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib")
 
 # group source files
