@@ -3,7 +3,9 @@
 
 typedef struct
 {
+    void (*init) (void);
     void (*run) (void);
+    void (*free) (void);
     char *name;
     char *version;
     char *url;
