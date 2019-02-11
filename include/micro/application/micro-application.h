@@ -1,7 +1,7 @@
 #ifndef MICRO_APPLICATION_H
 #define MICRO_APPLICATION_H
 
-typedef struct
+struct _MicroApplication
 {
     void (*init) (void);
     void (*run) (void);
@@ -14,6 +14,8 @@ typedef struct
     char *description;
     char *long_description;
     char *app_help;
-} MicroApplication;
+};
+
+typedef struct _MicroApplication MicroApplication;
 
 #endif
