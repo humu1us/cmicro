@@ -1,24 +1,38 @@
 #ifndef MICRO_APP_H
 #define MICRO_APP_H
 
-class Message;
+#include <string>
 
-struct _MicroApp
+namespace micro
 {
-    int (*init) (void);
-    Message * (*run) (Message *);
-    void (*free) (void);
-    char *type;
-    char *name;
-    char *version;
-    char *url;
-    char *author;
-    char *email;
-    char *description;
-    char *long_description;
-    char *help;
-};
+    class MicroApp
+    {
+    public:
+        MicroApp(const std::string &name, const std::string &type);
 
-typedef struct _MicroApp MicroApp;
+        virtual Message run(const Message &msg) = 0;
+
+        const std::string get_name() const;
+        const std::string get_type() const;
+        const std::string get_version() const;
+        const std::string get_url() const;
+        const std::string get_author() const;
+        const std::string get_email() const;
+        const std::string get_description() const;
+        const std::string get_long_description() const;
+        const std::string get_help() const;
+
+    protected:
+        std::string name;
+        std::string type;
+        std::string version;
+        std::string url;
+        std::string author;
+        std::string email;
+        std::string description;
+        std::string long_description;
+        std::string help;
+    };
+}
 
 #endif
