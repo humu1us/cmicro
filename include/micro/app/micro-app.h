@@ -6,12 +6,13 @@
 
 namespace micro
 {
+    class Message;
     class MicroApp
     {
     public:
         MicroApp(const std::string &name, const std::vector<std::string> &iface_types);
 
-        virtual Message run(const Message &msg) = 0;
+        virtual Message *run(const Message &msg) = 0;
 
         const std::string get_name() const;
         const std::vector<std::string> get_types() const;
