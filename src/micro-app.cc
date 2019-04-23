@@ -1,9 +1,9 @@
 #include <micro/app/micro-app.h>
 
 
-micro::MicroApp::MicroApp(const std::string &name, const std::string &type)
+micro::MicroApp::MicroApp(const std::string &name, const std::vector<std::string> &iface_types)
     : name(name)
-    , type(type)
+    , iface_types(iface_types)
 {
 }
 
@@ -12,9 +12,9 @@ const std::string micro::MicroApp::get_name() const
     return name;
 }
 
-const std::string micro::MicroApp::get_type() const
+const std::vector<std::string> micro::MicroApp::get_types() const
 {
-    return type;
+    return iface_types;
 }
 
 const std::string micro::MicroApp::get_version() const

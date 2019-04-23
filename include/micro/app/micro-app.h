@@ -2,18 +2,19 @@
 #define MICRO_APP_H
 
 #include <string>
+#include <vector>
 
 namespace micro
 {
     class MicroApp
     {
     public:
-        MicroApp(const std::string &name, const std::string &type);
+        MicroApp(const std::string &name, const std::vector<std::string> &iface_types);
 
         virtual Message run(const Message &msg) = 0;
 
         const std::string get_name() const;
-        const std::string get_type() const;
+        const std::vector<std::string> get_types() const;
         const std::string get_version() const;
         const std::string get_url() const;
         const std::string get_author() const;
@@ -24,7 +25,7 @@ namespace micro
 
     protected:
         std::string name;
-        std::string type;
+        std::vector<std::string> iface_types;
         std::string version;
         std::string url;
         std::string author;
