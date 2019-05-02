@@ -8,6 +8,7 @@ namespace micro
     {
     public:
         BaseApp(char *name);
+        virtual ~BaseApp() {}
 
         virtual Message *run(const Message &msg) = 0;
 
