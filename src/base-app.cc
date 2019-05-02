@@ -1,7 +1,7 @@
-#include <micro/app/micro-app.h>
+#include <micro/app/base-app.h>
 
 
-micro::MicroApp::MicroApp(char *name)
+micro::BaseApp::BaseApp(char *name)
     : name(name)
     , iface_types(nullptr)
     , version(nullptr)

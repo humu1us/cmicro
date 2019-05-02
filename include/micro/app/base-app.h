@@ -1,13 +1,13 @@
-#ifndef MICRO_APP_H
-#define MICRO_APP_H
+#ifndef MICRO_BASE_APP_H
+#define MICRO_BASE_APP_H
 
 namespace micro
 {
     class Message;
-    class MicroApp
+    class BaseApp
     {
     public:
-        MicroApp(char *name);
+        BaseApp(char *name);
 
         virtual Message *run(const Message &msg) = 0;
 
@@ -23,7 +23,7 @@ namespace micro
     };
 }
 
-typedef micro::MicroApp *micro_app_create();
-typedef void micro_app_destroy(micro::MicroApp *app);
+typedef micro::BaseApp *micro_app_create();
+typedef void micro_app_destroy(micro::BaseApp *app);
 
 #endif
