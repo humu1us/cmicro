@@ -13,10 +13,25 @@ namespace micro
     public:
         Buffer(const std::size_t max_size = 0);
 
-        bool is_empty() const;
-        bool is_full() const;
-        std::size_t size() const;
-        std::size_t capacity() const;
+        bool is_empty() const
+        {
+            return queue.empty();
+        }
+
+        bool is_full() const
+        {
+            return queue.size() >= max_size;
+        }
+
+        std::size_t size() const
+        {
+            return queue.size();
+        }
+
+        std::size_t capacity() const
+        {
+            return max_size;
+        }
 
     protected:
         std::deque<Message *> queue;

@@ -11,23 +11,3 @@ micro::Buffer::Buffer(const std::size_t size)
     else
         max_size = _max_size;
 }
-
-bool micro::Buffer::is_empty() const
-{
-    return queue.empty();
-}
-
-bool micro::Buffer::is_full() const
-{
-    return queue.size() >= max_size;
-}
-
-std::size_t micro::Buffer::size() const
-{
-    return queue.size();
-}
-
-std::size_t micro::Buffer::capacity() const
-{
-    return max_size;
-}
