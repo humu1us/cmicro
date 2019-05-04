@@ -34,6 +34,8 @@ namespace micro
             return max_size;
         }
 
+        void push(std::unique_ptr<Message *> data);
+
     protected:
         std::deque<std::unique_ptr<Message *>> queue;
         std::size_t max_size;

@@ -11,3 +11,11 @@ micro::Buffer::Buffer(const std::size_t size)
     else
         max_size = _max_size;
 }
+
+void micro::Buffer::push(std::unique_ptr<micro::Message *> msg)
+{
+    if (is_full())
+        throw std::out_of_range("buffer is full");
+
+    queue.push_back(std::move(msg));
+}
