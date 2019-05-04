@@ -35,6 +35,7 @@ namespace micro
         }
 
         void push(std::unique_ptr<Message *> data);
+        std::unique_ptr<Message *> pop();
 
     protected:
         std::deque<std::unique_ptr<Message *>> queue;

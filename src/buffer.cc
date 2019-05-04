@@ -19,3 +19,13 @@ void micro::Buffer::push(std::unique_ptr<micro::Message *> msg)
 
     queue.push_back(std::move(msg));
 }
+
+std::unique_ptr<micro::Message *> micro::Buffer::pop()
+{
+    if (queue.empty())
+        return NULL;
+
+    std::unique_ptr<micro::Message *> msg = std::move(queue.front());
+    queue.pop_front();
+    return msg;
+}
