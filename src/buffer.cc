@@ -3,7 +3,7 @@
 #include <stdexcept>
 
 micro::Buffer::Buffer(const std::size_t size)
-    : queue(std::deque<Message *>())
+    : queue(std::deque<std::unique_ptr<Message *>>())
 {
     std::size_t _max_size = queue.max_size();
     if (size != 0 && size <= _max_size)

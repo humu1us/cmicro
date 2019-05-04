@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <deque>
+#include <memory>
 
 namespace micro
 {
@@ -34,7 +35,7 @@ namespace micro
         }
 
     protected:
-        std::deque<Message *> queue;
+        std::deque<std::unique_ptr<Message *>> queue;
         std::size_t max_size;
     };
 }
