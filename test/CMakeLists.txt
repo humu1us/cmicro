@@ -4,3 +4,6 @@
 add_executable(create_buffer buffer/create_buffer.cc)
 target_link_libraries(create_buffer buffer)
 target_link_libraries(create_buffer message)
+add_executable(push_pop buffer/push_pop.cc)
+target_link_libraries(push_pop buffer)
+target_link_libraries(push_pop message)

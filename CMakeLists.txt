@@ -36,3 +36,4 @@ add_subdirectory(test)
 # add test as follow
 # add_test(test_name test/test_name "${CURRENT_LIST_DIR}")
 add_test(create_buffer test/create_buffer)
+add_test(push_pop test/push_pop)
