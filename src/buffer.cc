@@ -1,9 +1,10 @@
 #include <micro/core/buffer.h>
+#include <micro/core/message.h>
 
 #include <stdexcept>
 
 micro::Buffer::Buffer(const std::size_t size)
-    : queue(std::deque<std::unique_ptr<Message *>>())
+    : queue(std::deque<std::unique_ptr<Message>>())
 {
     std::size_t _max_size = queue.max_size();
     if (size != 0 && size <= _max_size)
@@ -12,7 +13,7 @@ micro::Buffer::Buffer(const std::size_t size)
         max_size = _max_size;
 }
 
-void micro::Buffer::push(std::unique_ptr<micro::Message *> msg)
+void micro::Buffer::push(std::unique_ptr<micro::Message> msg)
 {
     if (is_full())
         throw std::out_of_range("buffer is full");
@@ -20,12 +21,12 @@ void micro::Buffer::push(std::unique_ptr<micro::Message *> msg)
     queue.push_back(std::move(msg));
 }
 
-std::unique_ptr<micro::Message *> micro::Buffer::pop()
+std::unique_ptr<micro::Message> micro::Buffer::pop()
 {
     if (queue.empty())
-        return NULL;
+        return std::unique_ptr<micro::Message>(nullptr);
 
-    std::unique_ptr<micro::Message *> msg = std::move(queue.front());
+    std::unique_ptr<micro::Message> msg = std::move(queue.front());
     queue.pop_front();
     return msg;
 }

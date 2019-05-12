@@ -34,11 +34,11 @@ namespace micro
             return max_size;
         }
 
-        void push(std::unique_ptr<Message *> data);
-        std::unique_ptr<Message *> pop();
+        void push(std::unique_ptr<Message> data);
+        std::unique_ptr<Message> pop();
 
     protected:
-        std::deque<std::unique_ptr<Message *>> queue;
+        std::deque<std::unique_ptr<Message>> queue;
         std::size_t max_size;
     };
 }
