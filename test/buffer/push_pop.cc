@@ -5,43 +5,39 @@
 
 int main()
 {
-    micro::Buffer *buffer = new micro::Buffer(2);
-    assert(buffer);
-    assert(buffer->is_empty());
-    assert(!buffer->is_full());
-    assert(buffer->size() == 0);
+    micro::Buffer buffer = micro::Buffer(2);
+    assert(buffer.is_empty());
+    assert(!buffer.is_full());
+    assert(buffer.size() == 0);
 
-    std::unique_ptr<micro::Message *> msg_1;
-    msg_1 = std::make_unique<micro::Message *>(new micro::Message(1, "", "", ""));
+    auto msg_1 = std::make_unique<micro::Message>(micro::Message(1, "", "", ""));
     assert(msg_1);
-    assert((*msg_1)->get_iface_id() == 1);
+    assert(msg_1->get_iface_id() == 1);
 
-    buffer->push(std::move(msg_1));
+    buffer.push(std::move(msg_1));
     assert(!msg_1);
-    assert(!buffer->is_empty());
-    assert(!buffer->is_full());
-    assert(buffer->size() == 1);
+    assert(!buffer.is_empty());
+    assert(!buffer.is_full());
+    assert(buffer.size() == 1);
 
-    std::unique_ptr<micro::Message *> msg_2;
-    msg_2 = std::make_unique<micro::Message *>(new micro::Message(2, "", "", ""));
+    auto msg_2 = std::make_unique<micro::Message>(micro::Message(2, "", "", ""));
     assert(msg_2);
-    assert((*msg_2)->get_iface_id() == 2);
+    assert(msg_2->get_iface_id() == 2);
 
-    buffer->push(std::move(msg_2));
+    buffer.push(std::move(msg_2));
     assert(!msg_2);
-    assert(!buffer->is_empty());
-    assert(buffer->is_full());
-    assert(buffer->size() == 2);
+    assert(!buffer.is_empty());
+    assert(buffer.is_full());
+    assert(buffer.size() == 2);
 
-    std::unique_ptr<micro::Message *> msg_3;
-    msg_3 = std::make_unique<micro::Message *>(new micro::Message(3, "", "", ""));
+    auto msg_3 = std::make_unique<micro::Message>(micro::Message(3, "", "", ""));
     assert(msg_3);
-    assert((*msg_3)->get_iface_id() == 3);
+    assert(msg_3->get_iface_id() == 3);
 
     std::string error = std::string();
     try
     {
-        buffer->push(std::move(msg_3));
+        buffer.push(std::move(msg_3));
     } catch (std::out_of_range &e)
     {
         error = e.what();
@@ -49,23 +45,23 @@ int main()
     assert(error == "buffer is full");
     assert(!msg_3);
 
-    std::unique_ptr<micro::Message *> msg_1_ = buffer->pop();
-    assert((*msg_1_)->get_iface_id() == 1);
-    assert(!buffer->is_empty());
-    assert(!buffer->is_full());
-    assert(buffer->size() == 1);
+    std::unique_ptr<micro::Message> msg_1_ = buffer.pop();
+    assert(msg_1_->get_iface_id() == 1);
+    assert(!buffer.is_empty());
+    assert(!buffer.is_full());
+    assert(buffer.size() == 1);
 
-    std::unique_ptr<micro::Message *> msg_2_ = buffer->pop();
-    assert((*msg_2_)->get_iface_id() == 2);
-    assert(buffer->is_empty());
-    assert(!buffer->is_full());
-    assert(buffer->size() == 0);
+    std::unique_ptr<micro::Message> msg_2_ = buffer.pop();
+    assert(msg_2_->get_iface_id() == 2);
+    assert(buffer.is_empty());
+    assert(!buffer.is_full());
+    assert(buffer.size() == 0);
 
-    std::unique_ptr<micro::Message *> msg_3_ = buffer->pop();
+    std::unique_ptr<micro::Message> msg_3_ = buffer.pop();
     assert(!msg_3_);
-    assert(buffer->is_empty());
-    assert(!buffer->is_full());
-    assert(buffer->size() == 0);
+    assert(buffer.is_empty());
+    assert(!buffer.is_full());
+    assert(buffer.size() == 0);
 
     return 0;
 }
