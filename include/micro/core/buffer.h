@@ -2,7 +2,6 @@
 #define MICRO_BUFFER_H
 
 #include <cstddef>
-#include <deque>
 #include <memory>
 
 namespace micro
@@ -12,34 +11,20 @@ namespace micro
     class Buffer
     {
     public:
-        Buffer(const std::size_t max_size = 0);
+        explicit Buffer(const std::size_t size = 0);
+        ~Buffer() noexcept;
 
-        bool is_empty() const
-        {
-            return queue.empty();
-        }
+        bool is_empty() const;
+        bool is_full() const;
+        std::size_t size() const;
+        std::size_t capacity() const;
 
-        bool is_full() const
-        {
-            return queue.size() >= max_size;
-        }
-
-        std::size_t size() const
-        {
-            return queue.size();
-        }
-
-        std::size_t capacity() const
-        {
-            return max_size;
-        }
-
-        void push(std::unique_ptr<Message> data);
+        void push(std::unique_ptr<Message> msg);
         std::unique_ptr<Message> pop();
 
-    protected:
-        std::deque<std::unique_ptr<Message>> queue;
-        std::size_t max_size;
+    private:
+        class Impl;
+        std::unique_ptr<Impl> impl;
     };
 }
 
