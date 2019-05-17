@@ -5,7 +5,7 @@
 
 int main()
 {
-    micro::Buffer buffer = micro::Buffer(2);
+    micro::Buffer buffer(2);
     assert(buffer.is_empty());
     assert(!buffer.is_full());
     assert(buffer.size() == 0);
