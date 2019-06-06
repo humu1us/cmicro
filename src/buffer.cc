@@ -9,19 +9,13 @@ namespace micro
     class Buffer::Impl
     {
     public:
-        Impl(const std::size_t size);
+        std::deque<std::unique_ptr<Message>> queue;
+        std::size_t max_size;
 
-        bool is_empty() const;
-        bool is_full() const;
-        std::size_t size() const;
-        std::size_t capacity() const;
+        Impl(const std::size_t size);
 
         void push(std::unique_ptr<Message> msg);
         std::unique_ptr<Message> pop();
-
-    private:
-        std::deque<std::unique_ptr<Message>> queue;
-        std::size_t max_size;
     };
 }
 
@@ -32,29 +26,9 @@ micro::Buffer::Impl::Impl(const std::size_t size)
 {
 }
 
-bool micro::Buffer::Impl::is_empty() const
-{
-    return queue.empty();
-}
-
-bool micro::Buffer::Impl::is_full() const
-{
-    return queue.size() >= max_size;
-}
-
-std::size_t micro::Buffer::Impl::size() const
-{
-    return queue.size();
-}
-
-std::size_t micro::Buffer::Impl::capacity() const
-{
-    return max_size;
-}
-
 void micro::Buffer::Impl::push(std::unique_ptr<Message> msg)
 {
-    if (is_full())
+    if (queue.size() >= max_size)
         throw std::out_of_range("buffer is full");
 
     queue.push_back(std::move(msg));
@@ -80,22 +54,22 @@ micro::Buffer::~Buffer() = default;
 
 bool micro::Buffer::is_empty() const
 {
-    return impl->is_empty();
+    return impl->queue.empty();
 }
 
 bool micro::Buffer::is_full() const
 {
-    return impl->is_full();
+    return impl->queue.size() >= impl->max_size;
 }
 
 std::size_t micro::Buffer::size() const
 {
-    return impl->size();
+    return impl->queue.size();
 }
 
 std::size_t micro::Buffer::capacity() const
 {
-    return impl->capacity();
+    return impl->max_size;
 }
 
 void micro::Buffer::push(std::unique_ptr<Message> msg)
