@@ -39,7 +39,7 @@ std::unique_ptr<micro::Message> micro::Buffer::Impl::pop()
     if (queue.empty())
         return nullptr;
 
-    std::unique_ptr<micro::Message> msg = std::move(queue.front());
+    auto msg = std::move(queue.front());
     queue.pop_front();
     return msg;
 }
