@@ -37,7 +37,7 @@ void micro::Buffer::Impl::push(std::unique_ptr<Message> msg)
 std::unique_ptr<micro::Message> micro::Buffer::Impl::pop()
 {
     if (queue.empty())
-        return std::unique_ptr<micro::Message>(nullptr);
+        return nullptr;
 
     std::unique_ptr<micro::Message> msg = std::move(queue.front());
     queue.pop_front();
