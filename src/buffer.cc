@@ -46,7 +46,7 @@ std::unique_ptr<micro::Message> micro::Buffer::Impl::pop()
 
 // Pimpl
 micro::Buffer::Buffer(const std::size_t size)
-    : impl(std::make_unique<micro::Buffer::Impl>(size))
+    : pimpl(std::make_unique<micro::Buffer::Impl>(size))
 {
 }
 
@@ -54,30 +54,30 @@ micro::Buffer::~Buffer() = default;
 
 bool micro::Buffer::is_empty() const
 {
-    return impl->queue.empty();
+    return pimpl->queue.empty();
 }
 
 bool micro::Buffer::is_full() const
 {
-    return impl->queue.size() >= impl->max_size;
+    return pimpl->queue.size() >= pimpl->max_size;
 }
 
 std::size_t micro::Buffer::size() const
 {
-    return impl->queue.size();
+    return pimpl->queue.size();
 }
 
 std::size_t micro::Buffer::capacity() const
 {
-    return impl->max_size;
+    return pimpl->max_size;
 }
 
 void micro::Buffer::push(std::unique_ptr<Message> msg)
 {
-    return impl->push(std::move(msg));
+    return pimpl->push(std::move(msg));
 }
 
 std::unique_ptr<micro::Message> micro::Buffer::pop()
 {
-    return impl->pop();
+    return pimpl->pop();
 }
