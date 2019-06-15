@@ -21,8 +21,7 @@ namespace micro
 
 // Implementation
 micro::Buffer::Impl::Impl(const std::size_t size)
-    : queue(std::deque<std::unique_ptr<Message>>())
-    , max_size(size ? size : queue.max_size())
+    : max_size(size ? size : queue.max_size())
 {
 }
 
