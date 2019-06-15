@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5.1)
+cmake_minimum_required(VERSION 3.8.0)
 
 project(cmicro CXX)
 
@@ -16,6 +16,8 @@ file(GLOB MESSAGE_SRC src/message.cc)
 # sources end
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if (${DEBUG} AND ${DEBUG} EQUAL 1)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
