@@ -74,7 +74,7 @@ std::size_t micro::Buffer::capacity() const
 
 void micro::Buffer::push(std::unique_ptr<Message> msg)
 {
-    return pimpl->push(std::move(msg));
+    pimpl->push(std::move(msg));
 }
 
 std::unique_ptr<micro::Message> micro::Buffer::pop()
