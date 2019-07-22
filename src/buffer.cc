@@ -1,5 +1,6 @@
 #include <micro/core/buffer.h>
 #include <micro/core/message.h>
+#include <micro/core/exception.h>
 
 #include <deque>
 #include <stdexcept>
@@ -28,7 +29,7 @@ micro::Buffer::Impl::Impl(const std::size_t size)
 void micro::Buffer::Impl::push(std::unique_ptr<Message> msg)
 {
     if (queue.size() >= max_size)
-        throw std::out_of_range("buffer is full");
+        throw micro::BufferOverflow();
 
     queue.push_back(std::move(msg));
 }

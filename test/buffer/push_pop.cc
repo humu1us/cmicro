@@ -1,5 +1,6 @@
 #include <micro/core/buffer.h>
 #include <micro/core/message.h>
+#include <micro/core/exception.h>
 
 #include <assert.h>
 
@@ -38,11 +39,11 @@ int main()
     try
     {
         buffer.push(std::move(msg_3));
-    } catch (std::out_of_range &e)
+    } catch (micro::BufferOverflow &e)
     {
         error = e.what();
     }
-    assert(error == "buffer is full");
+    assert(error == "Micro's buffer overflow!");
     assert(!msg_3);
 
     std::unique_ptr<micro::Message> msg_1_ = buffer.pop();

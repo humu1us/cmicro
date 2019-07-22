@@ -12,6 +12,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/lib")
 # executable: file(GLOB MAIN_SRC src/main.cc)
 file(GLOB BUFFER_SRC src/buffer.cc)
 file(GLOB MESSAGE_SRC src/message.cc)
+file(GLOB EXCEPTION_SRC src/exception.cc)
 
 # sources end
 
@@ -32,6 +33,7 @@ include_directories(include)
 # executable: add_executable(${PROJECT_NAME} ${MAIN_SRC})
 add_library("buffer" SHARED "${BUFFER_SRC}")
 add_library("message" SHARED "${MESSAGE_SRC}")
+add_library("exception" SHARED "${EXCEPTION_SRC}")
 
 enable_testing()
 add_subdirectory(test)
@@ -39,3 +41,5 @@ add_subdirectory(test)
 # add_test(test_name test/test_name "${CURRENT_LIST_DIR}")
 add_test(create_buffer test/create_buffer)
 add_test(push_pop test/push_pop)
+add_test(micro_exception test/micro_exception)
+add_test(buffer_overflow test/buffer_overflow)
